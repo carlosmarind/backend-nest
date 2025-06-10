@@ -98,4 +98,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 ## Commentary
-El proyecto trata sobre la modificacion del fichero README.MD Ulises-Acosta
+El proyecto trata sobre la modificacion del fichero README.MD dentro de un entorno en git Ulises-Acosta
