@@ -1,0 +1,1 @@
+El proyecto en su comienzo sólo tenía 4 endpoints con el fin de decir Hola en ingles, aleman, español y frances. Ahora último para realizar test, se le agregó una carpeta de operaciones, en donde hicimos pruebas con las sumas.
