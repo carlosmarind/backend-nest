@@ -1,0 +1,1 @@
+En este proyecto hemos aprendido a trabajar con git: crear branch, moverse de una rama a otra, hacer clon, fork, entre otras cosas.
