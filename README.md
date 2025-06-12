@@ -25,6 +25,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Esta es una modificación al archivo Readme.md realizada por Cristopher Galaz
+
 ## Project setup
 
 ```bash
