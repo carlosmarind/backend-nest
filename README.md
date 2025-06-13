@@ -26,6 +26,7 @@
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Project setup
+## NO RECUERDO LOS EDITORES EN SHELS XD nano, pico ?
 
 ```bash
 $ npm install
