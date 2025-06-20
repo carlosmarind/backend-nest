@@ -1,28 +1,58 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Controller, Get, Query, Res, BadRequestException } from '@nestjs/common';
 import { OperacionesService } from './operaciones.service';
 import { Response } from 'express';
 
 @Controller('operaciones')
 export class OperacionesController {
-  constructor(private readonly operService: OperacionesService) {}
+  constructor(private readonly operService: OperacionesService) { }
 
-  @Get()
-  operar(
-    @Res() res: Response,
-    @Query('operacion') operacion: string,
-    @Query('a') a: number,
-    @Query('b') b: number,
-  ) {
-    const calculo = this.operService.operar(operacion, +a, +b);
-
-    if (calculo) {
-      return res
-        .status(200)
-        .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+  private validarNumero(param: string, nombre: string): number {
+    const valor = Number(param);
+    if (param === undefined || param === null || param.trim() === '' || isNaN(valor)) {
+      throw new BadRequestException(`El parámetro "${nombre}" es inválido`);
     }
+    return valor;
+  }
 
-    return res
-      .status(502)
-      .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
+
+  @Get('suma')
+  sumar(@Query('a') a: string, @Query('b') b: string) {
+    const numA = this.validarNumero(a, 'a');
+    const numB = this.validarNumero(b, 'b');
+    return this.operService.sumar(numA, numB);
+  }
+
+  @Get('resta')
+  restar(@Query('a') a: string, @Query('b') b: string) {
+    const numA = this.validarNumero(a, 'a');
+    const numB = this.validarNumero(b, 'b');
+    return this.operService.restar(numA, numB);
+  }
+
+  @Get('multiplicacion')
+  multiplicar(@Query('a') a: string, @Query('b') b: string) {
+    const numA = this.validarNumero(a, 'a');
+    const numB = this.validarNumero(b, 'b');
+    return this.operService.multiplicar(numA, numB);
+  }
+
+  @Get('division')
+  dividir(@Query('a') a: string, @Query('b') b: string) {
+    const numA = this.validarNumero(a, 'a');
+    const numB = this.validarNumero(b, 'b');
+    return this.operService.dividir(numA, numB);
+  }
+
+  @Get('potencia')
+  potencia(@Query('base') base: string, @Query('exponente') exponente: string) {
+    const numBase = this.validarNumero(base, 'base');
+    const numExponente = this.validarNumero(exponente, 'exponente');
+    return this.operService.potencia(numBase, numExponente);
+  }
+
+  @Get('factorial')
+  factorial(@Query('n') n: string) {
+    const numN = this.validarNumero(n, 'n');
+    return this.operService.factorial(numN);
   }
 }

@@ -7,7 +7,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly dbManager: DbManagerService,
-  ) {}
+  ) { }
 
   // localhost:3000/
   @Get()
@@ -28,8 +28,9 @@ export class AppController {
 
   @Get('espanol')
   getHelloEspanol(): string {
-    return '';
+    return this.appService.getHelloEspanol();
   }
+
 
   @Get('user')
   getUser(@Query('id') id: number) {

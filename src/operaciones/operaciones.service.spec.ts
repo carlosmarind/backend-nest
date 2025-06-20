@@ -1,51 +1,107 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OperacionesService } from './operaciones.service';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from '../app.module';
 
-describe('OperacionesService', () => {
-  let service: OperacionesService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [OperacionesService],
+describe('OperacionesController (e2e)', () => {
+  let app: INestApplication;
+
+  beforeAll(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
     }).compile();
 
-    service = module.get<OperacionesService>(OperacionesService);
+    app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
+    await app.init();
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  afterAll(async () => {
+    await app.close();
   });
 
-  it('operacion deberia sumar', () => {
-    let a: any = 10;
-    let b = 30;
+  // SUMA
+  it('/operaciones/suma (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/suma?a=5&b=3')
+      .expect(200)
+      .expect('8');
+  });
 
-    expect(service.operar('suma', a, b)).toBe(40);
+  it('/operaciones/suma (GET) error por valor no numérico', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/suma?a=hola&b=3')
+      .expect(400);
+  });
 
-    a = -10;
-    b = 50;
-    expect(service.operar('suma', a, b)).toBe(40);
+  // RESTA
+  it('/operaciones/resta (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/resta?a=10&b=4')
+      .expect(200)
+      .expect('6');
+  });
 
-    a = -10;
-    b = -50;
-    expect(service.operar('suma', a, b)).not.toBe(-100);
+  // MULTIPLICACIÓN
+  it('/operaciones/multiplicacion (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/multiplicacion?a=3&b=4')
+      .expect(200)
+      .expect('12');
+  });
 
-    a = Math.PI;
-    b = 30;
-    expect(service.operar('suma', a, b)).toBeCloseTo(33.14, 2);
+  // DIVISIÓN
+  it('/operaciones/division (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/division?a=10&b=2')
+      .expect(200)
+      .expect('5');
+  });
 
-    a = null;
-    b = 50;
-    expect(service.operar('suma', a, b)).toBeNaN();
+  it('/operaciones/division (GET) error por división por 0', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/division?a=10&b=0')
+      .expect(400);
+  });
 
-    a = '10';
-    b = 50;
-    expect(service.operar('suma', a, b)).toBeNaN();
+  // POTENCIA
+  it('/operaciones/potencia (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/potencia?base=2&exponente=4')
+      .expect(200)
+      .expect('16');
+  });
 
-    a = undefined;
-    b = 50;
-    expect(() => {
-      service.operar('suma', a, b);
-    }).toThrow('No se puede llamar con numeros indefinidos.');
+  it('/operaciones/potencia (GET) error por valor inválido', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/potencia?base=2&exponente=hola')
+      .expect(400);
+  });
+
+  // FACTORIAL
+  it('/operaciones/factorial (GET) OK', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/factorial?n=5')
+      .expect(200)
+      .expect('120');
+  });
+
+  it('/operaciones/factorial (GET) error por número negativo', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/factorial?n=-3')
+      .expect(400);
+  });
+
+  it('/operaciones/factorial (GET) error por número no entero', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/factorial?n=2.5')
+      .expect(400);
+  });
+
+  it('/operaciones/factorial (GET) error por string', () => {
+    return request(app.getHttpServer())
+      .get('/operaciones/factorial?n=abc')
+      .expect(400);
   });
 });

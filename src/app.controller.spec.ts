@@ -5,7 +5,6 @@ import { DbManagerService } from './db-manager/db-manager.service';
 
 describe('AppController', () => {
   let appController: AppController;
-
   let mockDbService: { getUser: jest.Mock };
 
   beforeEach(async () => {
@@ -13,7 +12,7 @@ describe('AppController', () => {
       getUser: jest.fn().mockReturnValue({ id: 1, nombre: 'Loreto' }),
     };
 
-    const app: TestingModule = await Test.createTestingModule({
+    const module: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [
         AppService,
@@ -21,17 +20,32 @@ describe('AppController', () => {
       ],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    appController = module.get<AppController>(AppController);
   });
 
-  describe('Probar el modulo raiz del proyecto', () => {
-    test('Esto deberia retornar hola mundo en ingles"', () => {
-      expect(appController.getHello()).toBe('Hello World!!');
-    });
+  it('debería estar definido', () => {
+    expect(appController).toBeDefined();
+  });
 
-    it('Deberia buscar un id por usuario', () => {
-      expect(appController.getUser(2342)).toEqual({ id: 1, nombre: 'Loreto' });
-      expect(mockDbService.getUser).toHaveBeenLastCalledWith(2342);
-    });
+  it('getHello debería retornar "Hello World!!"', () => {
+    expect(appController.getHello()).toBe('Hello World!!');
+  });
+
+  it('getHelloAleman debería retornar "Hallo Welt"', () => {
+    expect(appController.getHelloAleman()).toBe('Hallo Welt');
+  });
+
+  it('getHelloFrances debería retornar "mi mensaje de pruebas"', () => {
+    expect(appController.getHelloFrances()).toBe('mi mensaje de pruebas');
+  });
+
+  it('getHelloEspanol debería retornar "Hola Mundo!!"', () => {
+    expect(appController.getHelloEspanol()).toBe('Hola Mundo!!');
+  });
+
+  it('getUser debería retornar un usuario por id', () => {
+    const userId = 2342;
+    expect(appController.getUser(userId)).toEqual({ id: 1, nombre: 'Loreto' });
+    expect(mockDbService.getUser).toHaveBeenCalledWith(userId);
   });
 });
