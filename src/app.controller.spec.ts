@@ -28,6 +28,15 @@ describe('AppController', () => {
     test('Esto deberia retornar hola mundo en ingles"', () => {
       expect(appController.getHello()).toBe('Hello World!!');
     });
+    test('Esto deberia retornar hola mundo en aleman"', () => {
+      expect(appController.getHelloAleman()).toBe('Hallo Welt');
+    });
+    test('Esto deberia retornar hola mundo en frances"', () => {
+      expect(appController.getHelloFrances()).toBe('mi mensaje de pruebas');
+    });
+    test('Esto deberia retornar hola mundo en espanol"', () => {
+      expect(appController.getHelloEspanol()).toBe('Hola Mundo!!');
+    });
 
     it('Deberia buscar un id por usuario', () => {
       expect(appController.getUser(2342)).toEqual({ id: 1, nombre: 'Loreto' });
