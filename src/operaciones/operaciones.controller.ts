@@ -13,16 +13,17 @@ export class OperacionesController {
     @Query('a') a: number,
     @Query('b') b: number,
   ) {
-    const calculo = this.operService.operar(operacion, +a, +b);
-
-    if (calculo) {
-      return res
-        .status(200)
-        .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+    try {
+      const resultado = this.operService.operar(operacion, +a, +b);
+      return res.status(200).json({
+        resultado,
+        mensaje: 'operacion exitosa',
+      });
+    } catch (error: any) {
+      return res.status(502).json({
+        resultado: null,
+        mensaje: error.message || 'Error en la operación',
+      });
     }
-
-    return res
-      .status(502)
-      .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
   }
 }
