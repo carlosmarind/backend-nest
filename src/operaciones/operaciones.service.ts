@@ -68,7 +68,7 @@ export class OperacionesService {
     }
 
     if (a === 0 ||  b === 0){
-      return 'Infinito';
+      return Infinity;
     }
     else{
     return a / b;

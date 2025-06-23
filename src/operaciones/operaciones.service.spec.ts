@@ -82,15 +82,15 @@ describe('OperacionesService', () => {
   //pruebas unitarias dividir
   it('operacion deberia dividir', () => {
     let a: any;
-    expect(service.operar('divison', 10, 2)).toBe(5);
-    expect(service.operar('divison', -10, -2)).toBe(5);
-    expect(service.operar('divison', -10, 2)).toBe(-5);
-    expect(service.operar('divison', 5, 2)).toBe(2.5);
-    expect(service.operar('divison', '10' as any, 2)).toBeNaN();
-    expect(service.operar('divison', null as any, 2)).toBeNaN();
+    expect(service.operar('division', 10, 2)).toBe(5);
+    expect(service.operar('division', -10, -2)).toBe(5);
+    expect(service.operar('division', -10, 2)).toBe(-5);
+    expect(service.operar('division', 5, 2)).toBe(2.5);
+    expect(service.operar('division', '10' as any, 2)).toBeNaN();
+    expect(service.operar('division', null as any, 2)).toBeNaN();
     a = undefined;
-    expect(() => service.operar('divison', a, 2)).toThrow('No se puede llamar con numeros indefinidos.');
-    expect(service.operar('divison', 10, 0)).toBe(Infinity);
+    expect(() => service.operar('division', a, 2)).toThrow('No se puede llamar con numeros indefinidos.');
+    expect(service.operar('division', 10, 0)).toBe(Infinity);
 
   });
   //pruebas unitarias potenciar
