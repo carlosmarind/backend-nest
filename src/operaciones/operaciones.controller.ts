@@ -6,7 +6,7 @@ import { Response } from 'express';
 export class OperacionesController {
   constructor(private readonly operService: OperacionesService) {}
 
-  @Get() // localhost:3000/operaciones?operacion=suma&a=10&b=40
+  @Get() // curl "localhost:3001/operaciones?operacion=suma&a=10&b=40"
   operar(
     @Res() res: Response,
     @Query('operacion') operacion: string,
