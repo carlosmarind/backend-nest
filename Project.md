@@ -1,0 +1,1 @@
+Este proyecto consiste de una aplicación Nest con Typescript
