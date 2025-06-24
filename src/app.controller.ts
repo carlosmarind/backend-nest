@@ -35,4 +35,10 @@ export class AppController {
   getUser(@Query('id') id: number) {
     return this.dbManager.getUser(id);
   }
+
+  @Get('operaciones')
+  getOperaciones(@Query('id') id: number) {
+    return this.dbManager.getUser(id);
+  }
+
 }
