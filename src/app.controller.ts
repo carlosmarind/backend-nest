@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, BadRequestException } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DbManagerService } from './db-manager/db-manager.service';
 
@@ -7,20 +7,18 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly dbManager: DbManagerService,
-  ) { }
+  ) {}
 
-  // localhost:3000/
   @Get()
   getHello(): string {
     return this.appService.getHello();
   }
-  // localhost:3000/hallo
+
   @Get('hallo')
   getHelloAleman(): string {
     return this.appService.getHelloAleman();
   }
 
-  // localhost:3000/hallo
   @Get('bonjour')
   getHelloFrances(): string {
     return this.appService.getHelloFrances();
@@ -31,9 +29,12 @@ export class AppController {
     return this.appService.getHelloEspanol();
   }
 
-
   @Get('user')
-  getUser(@Query('id') id: number) {
-    return this.dbManager.getUser(id);
+  getUser(@Query('id') id: string) {
+    const idNum = Number(id);
+    if (!id || isNaN(idNum)) {
+      throw new BadRequestException('ID debe ser un número válido');
+    }
+    return this.dbManager.getUser(idNum);
   }
 }
