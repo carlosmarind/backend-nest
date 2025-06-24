@@ -11,6 +11,8 @@ export class OperacionesService {
       return this.#multiplicacion(a, b);
     } else if (operacion === 'division') {
       return this.#division(a, b);
+    } else if (operacion === 'potencia') {
+      return this.#potencia(a, b);
     }
   }
 
@@ -61,5 +63,17 @@ export class OperacionesService {
     }
     
     return a / b;
+  }
+
+  #potencia(base: number, exponente: number) {
+    if (base === undefined || exponente === undefined) {
+      throw new Error('No se puede llamar con numeros indefinidos.');
+    }
+
+    if (typeof base !== 'number' || typeof exponente !== 'number') {
+      return NaN;
+    }
+    
+    return Math.pow(base, exponente);
   }
 }
