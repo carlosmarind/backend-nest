@@ -13,6 +13,8 @@ export class OperacionesService {
       return this.#division(a, b);
     } else if (operacion === 'potencia') {
       return this.#potencia(a, b);
+    } else if (operacion === 'factorial') {
+      return this.#factorial(a);
     } else {
       throw new Error(`Operación no válida: ${operacion}`);
     }
@@ -77,6 +79,26 @@ export class OperacionesService {
     }
  
     return Math.pow(base, exponente);
+  }
+
+  #factorial(n: number) {
+    if (n === undefined) {
+      throw new Error('No se puede llamar con numeros indefinidos.');
+    }
+ 
+    if (typeof n !== 'number' || isNaN(n)) {
+      return NaN;
+    }
+ 
+    if (!Number.isInteger(n) || n < 0) {
+      throw new Error('Número inválido para factorial.');
+    }
+ 
+    let resultado = 1;
+    for (let i = 2; i <= n; i++) {
+      resultado *= i;
+    }
+    return resultado;
   }
  
  
