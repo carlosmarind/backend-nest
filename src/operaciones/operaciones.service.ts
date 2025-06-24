@@ -21,6 +21,9 @@ export class OperacionesService {
     if(operacion === 'factorial'){
       return this.#factorial(a);
     }
+    else{
+      throw new Error('operacion no pudo ser calculada');
+    }
   }
 
   #suma(a: number, b: number) {
@@ -64,6 +67,7 @@ export class OperacionesService {
     if(typeof a !== 'number' || typeof b !== 'number'){
       return NaN;
     }
+
     return a / b;
   }
 
@@ -78,12 +82,13 @@ export class OperacionesService {
     return Math.pow(base, exponente);
   }
 
-  #factorial(numero: number, acumulador: number = 1){
-    if(numero === undefined || acumulador === undefined){
+  #factorial(numero: number){
+    if(numero === undefined)
+    {
       throw new Error('No se puede llamar con números indefinidos.');
     }
 
-    if(typeof numero !== 'number' || typeof acumulador !== 'number'){
+    if(typeof numero !== 'number'){
       return NaN;
     }
 

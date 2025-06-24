@@ -15,21 +15,21 @@ export class AppController {
     return this.appService.getHello();
   }
   // localhost:3000/hallo
-  @Get('hallo')
-  getHelloAleman(): string {
-    return this.appService.getHelloAleman();
-  }
+  // @Get('hallo')
+  // getHelloAleman(): string {
+  //   return this.appService.getHelloAleman();
+  // }
 
-  // localhost:3000/hallo
-  @Get('bonjour')
-  getHelloFrances(): string {
-    return this.appService.getHelloFrances();
-  }
+  // // localhost:3000/hallo
+  // @Get('bonjour')
+  // getHelloFrances(): string {
+  //   return this.appService.getHelloFrances();
+  // }
 
-  @Get('espanol')
-  getHelloEspanol(): string {
-    return '';
-  }
+  // @Get('espanol')
+  // getHelloEspanol(): string {
+  //   return '';
+  // }
 
   @Get('user')
   getUser(@Query('id') id: number) {

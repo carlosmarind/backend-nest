@@ -6,15 +6,15 @@ export class AppService {
     return 'Hello World!!';
   }
 
-  getHelloAleman(): string {
-    return 'Hallo Welt';
-  }
+  // getHelloAleman(): string {
+  //   return 'Hallo Welt';
+  // }
 
-  getHelloFrances(): string {
-    return 'mi mensaje de pruebas';
-  }
+  // getHelloFrances(): string {
+  //   return 'mi mensaje de pruebas';
+  // }
 
-  getHelloEspanol(): string {
-    return 'Hola Mundo!!';
-  }
+  // getHelloEspanol(): string {
+  //   return 'Hola Mundo!!';
+  // }
 }

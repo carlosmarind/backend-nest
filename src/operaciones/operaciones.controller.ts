@@ -25,4 +25,19 @@ export class OperacionesController {
       .status(502)
       .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
   }
+
+  // @Get('factorial')
+  // calcularfactorial(@Res() res: Response, @Query('numero') numero: number) {
+  //   const calculo = this.operService.factorial(+numero);
+
+  //   if(calculo){
+  //     return res
+  //     .status(200)
+  //     .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+  //   }
+
+  //   return res
+  //     .status(502)
+  //     .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
+  // }
 }
