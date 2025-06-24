@@ -14,6 +14,7 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+  
   // localhost:3000/hallo
   @Get('hallo')
   getHelloAleman(): string {

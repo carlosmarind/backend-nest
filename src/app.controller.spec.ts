@@ -27,6 +27,9 @@ describe('AppController', () => {
   describe('Probar el modulo raiz del proyecto', () => {
     test('Esto deberia retornar hola mundo en ingles"', () => {
       expect(appController.getHello()).toBe('Hello World!!');
+      expect(appController.getHelloAleman()).toBe('Hallo Welt');
+      expect(appController.getHelloFrances()).toBe('mi mensaje de pruebas');
+      expect(appController.getHelloEspanol()).toBe('');
     });
 
     it('Deberia buscar un id por usuario', () => {
@@ -34,4 +37,5 @@ describe('AppController', () => {
       expect(mockDbService.getUser).toHaveBeenLastCalledWith(2342);
     });
   });
+  
 });
