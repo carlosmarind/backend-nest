@@ -44,7 +44,7 @@ describe('AppController (e2e)', () => {
     it('/operaciones (GET)', () => {
       return request(app.getHttpServer())
         .get('/operaciones')
-        .query({ operacion: 'suma', a: null, b: 100 })
+        .query({ operacion: 'suma', a: NaN, b: 100 })
         .expect(502);
     });
   
@@ -198,7 +198,7 @@ describe('AppController (e2e)', () => {
       it('/operaciones (GET)', () => {
         return request(app.getHttpServer())
           .get('/operaciones')
-          .query({ operacion: 'factorial', a: "5", b: 3 })
+          .query({ operacion: 'factorial', a: "xd", b: 3 })
           .expect(502);
       });
     

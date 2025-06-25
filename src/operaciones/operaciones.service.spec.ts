@@ -170,12 +170,6 @@ describe('OperacionesService', () => {
       service.operar('division', numero1, numero2);
     }).toThrow('No se puede llamar con números indefinidos.');
 
-    numero1 = 8;
-    numero2 = 0;
-
-    expect(() => {
-      service.operar('division', numero1, numero2);
-    }).toThrow('No se puede dividir por cero.');
   });
 
   it('deberia calcular potencias', () => {

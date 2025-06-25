@@ -31,9 +31,14 @@ export class OperacionesService {
       throw new Error('No se puede llamar con numeros indefinidos.');
     }
 
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (isNaN(a) || isNaN(b)) {
       return NaN;
     }
+
+    if(typeof a !== 'number' || typeof b !== 'number'){
+      return NaN;
+    }
+
     return a + b;
   }
 
@@ -42,9 +47,14 @@ export class OperacionesService {
       throw new Error('No se puede llamar con números indefinidos.');
     }
 
+    if(isNaN(a) || isNaN(b)){
+      return NaN;
+    }
+
     if(typeof a !== 'number' || typeof b !== 'number'){
       return NaN;
     }
+
     return a - b;
   }
 
@@ -53,15 +63,24 @@ export class OperacionesService {
       throw new Error('No se puede llamar con números indefinidos.');
     }
 
+    if(isNaN(a) || isNaN(b)){
+      return NaN;
+    }
+
     if(typeof a !== 'number' || typeof b !== 'number'){
       return NaN;
     }
+
     return a * b;
   }
 
   #division(a: number, b:number){
     if(a === undefined || b === undefined){
       throw new Error('No se puede llamar con números indefinidos.');
+    }
+
+    if(isNaN(a) || isNaN(b)){
+      return NaN;
     }
 
     if(typeof a !== 'number' || typeof b !== 'number'){
@@ -76,9 +95,14 @@ export class OperacionesService {
       throw new Error('No se puede llamar con números indefinidos.');
     }
 
+    if(isNaN(base) || isNaN(exponente)){
+      return NaN;
+    }
+
     if(typeof base !== 'number' || typeof exponente !== 'number'){
       return NaN;
     }
+
     return Math.pow(base, exponente);
   }
 
@@ -88,19 +112,25 @@ export class OperacionesService {
       throw new Error('No se puede llamar con números indefinidos.');
     }
 
+    if(isNaN(numero)){
+      return NaN;
+    }
+    
     if(typeof numero !== 'number'){
       return NaN;
     }
 
-    if(numero === 0)
+    if(numero === 0){
       return 0;
-
-    let resultado = 1;
+    }
+    else{
+      let resultado = 1;
 
     for(let i = 2; i <= numero; i++){
       resultado *= i;
     }
 
     return resultado;
+    }
   }
 }
