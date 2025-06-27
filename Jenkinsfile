@@ -2,40 +2,31 @@ pipeline {
     agent any
 
     environment {
-        NPM_CONFIG_CACHE= "${WORKSPACE}/.npm"
+        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
     }
-    stages{
-        stage ('Saludo'){
-            steps{
+
+    stages {
+        stage('Saludo') {
+            steps {
                 sh 'echo "hola a todos desde el pipeline"'
-
             }
         }
-        stage('Saludo2'){
-            steps{
+
+        stage('Saludo2') {
+            steps {
                 sh 'echo "hola a todos desde el pipeline 2"'
-
             }
         }
-    }
-    stages{
-        stage ('proceso de build y test'){
+
+        stage('Proceso de build y test') {
             agent {
-                docker{
-                    image: 'node:22'
+                docker {
+                    image 'node:22'
                 }
             }
-            stages{
-                stage("instalacion de dependencias"){
-                    steps{
-                        sh 'npm ci'
-                    }
-                }
-                stage("test"){
-                    steps{
-                        sh 'npm run test:cov'
-                    }
-                }
+            steps {
+                sh 'npm ci'
+                sh 'npm run test:cov'
             }
         }
     }
