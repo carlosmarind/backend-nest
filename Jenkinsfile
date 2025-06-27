@@ -11,7 +11,7 @@ pipeline {
 
             }
         }
-        stage{ 'Saludo2'){
+        stage{('Saludo2'){
             steps{
                 sh 'echo "hola a todos desde el pipeline 2"'
 
