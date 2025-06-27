@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Pruebas Jenkins'){
             steps{
-                sh 'mensaje prueba "Hola Mundo!"'
+                sh 'echo "Hola Mundo!"'
             }
         }
     }
