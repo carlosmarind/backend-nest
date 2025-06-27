@@ -28,6 +28,11 @@ pipeline {
                         sh 'npm ci'
                     }
                 }
+                stage("ejecucion de pruebas"){
+                    steps {
+                        sh 'npm run test:cov'
+                    }
+                }
             }
         }
     }
