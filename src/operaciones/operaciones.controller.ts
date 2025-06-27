@@ -7,22 +7,32 @@ export class OperacionesController {
   constructor(private readonly operService: OperacionesService) {}
 
   @Get() // localhost:3000/operaciones?operacion=suma&a=10&b=40
-  operar(
-    @Res() res: Response,
-    @Query('operacion') operacion: string,
-    @Query('a') a: number,
-    @Query('b') b: number,
-  ) {
-    const calculo = this.operService.operar(operacion, +a, +b);
+operar(
+  @Res() res: Response,
+  @Query('operacion') operacion: string,
+  @Query('a') a?: number,
+  @Query('b') b?: number,
+) {
+  const numA = Number(a);
+  const numB = b !== undefined ? Number(b) : undefined;
 
-    if (calculo) {
-      return res
-        .status(200)
-        .json({ resultado: calculo, mensaje: 'operacion exitosa' });
-    }
-
+  if (
+    Number.isNaN(numA) || (b !== undefined && Number.isNaN(numB))) {
     return res
       .status(502)
       .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
   }
+
+  const calculo = this.operService.operar(operacion, numA, numB);
+
+  if (calculo !== null && calculo !== undefined && !Number.isNaN(calculo)) {
+    return res
+      .status(200)
+      .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+  }
+
+  return res
+    .status(502)
+    .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
+}
 }

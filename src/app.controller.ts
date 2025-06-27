@@ -31,6 +31,21 @@ export class AppController {
     return '';
   }
 
+    @Get('simba')
+  getSimba(): string {
+    return this.appService.getSimba();
+  }
+
+  @Get('starwars')
+  getStarWars(): string {
+    return this.appService.getStarWars();
+  }
+
+  @Get('stich')
+  getStich(): string {
+    return this.appService.getStich();
+  }
+
   @Get('user')
   getUser(@Query('id') id: number) {
     return this.dbManager.getUser(id);

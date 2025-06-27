@@ -17,4 +17,16 @@ export class AppService {
   getHelloEspanol(): string {
     return 'Hola Mundo!!';
   }
+
+    getSimba(): string {
+    return 'Hakuna Matata, una forma de ser';
+  }
+
+  getStich(): string {
+    return 'Ohana significa familia, y la familia nunca te abandona';
+  }
+
+  getStarWars(): string {
+    return 'Que la fuerza te acompañe';
+  }
 }
