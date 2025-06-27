@@ -8,7 +8,31 @@ pipeline {
 
         stage ("saludo a usuario"){
             steps{
-                sh 'npm ci'
+                sh 'echo "hola atodos"'
+            }
+        }
+        stage ("saludo a usuario"){
+            steps{
+                sh 'echo "hola a prueba"'
+            }
+        }
+    }
+
+    stages {
+
+        stage ("proceso build y test"){
+            agent {
+                docker {
+                    image 'node:22'
+                    reuseNode true
+                }
+            }
+            stages {
+                stage ("instalación de dependencias") {
+                    steps {
+                        sh 'npm ci'
+                    }
+                }
             }
         }
 
