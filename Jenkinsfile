@@ -16,10 +16,6 @@ pipeline {
                 sh 'echo "hola a prueba"'
             }
         }
-    }
-
-    stages {
-
         stage ("proceso build y test"){
             agent {
                 docker {
@@ -35,6 +31,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
