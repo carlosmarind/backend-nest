@@ -11,7 +11,7 @@ pipeline {
                 sh 'echo "hola atodos"'
             }
         }
-        stage ("saludo a usuario"){
+        stage ("saludo a usuario prueba"){
             steps{
                 sh 'echo "hola a prueba"'
             }
